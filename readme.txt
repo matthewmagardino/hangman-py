@@ -10,5 +10,8 @@ to run (in Apple terminal):
   - enjoy :)
 
 
+or:
+  - double click executable (hangman)
+
 requirements:
   - python3 installed
