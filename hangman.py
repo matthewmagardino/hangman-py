@@ -11,23 +11,28 @@ import random
 useful to make string into a list of chars
 returns list (of string inputted)
 """
-def stringToList(s):
+def OLDstringToList(s):
     l = [];
     for i in range(len(s)):
         l.append(s[i]);
     return l;
 
+def stringToList(s):
+    return list(s);
 
 
 """
 useful to take list of chars and make a string
 returns string (of chars from list inputted)
 """
-def listToString(l):
+def OLDlistToString(l):
     s = "";
     for i in range(len(l)):
         s += l[i];
     return s;
+
+def listToString(l):
+    return "".join(l);
 
 
 
