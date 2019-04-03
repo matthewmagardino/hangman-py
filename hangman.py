@@ -58,7 +58,7 @@ returns a string (the random word)
 def getRandomWord():
     special = ["chipotle", "finance", "trash", "medicine", "code", "amazon"]
     dict = [];
-    file = open('dictionary.txt','r').read().split('\n');
+    file = open('data/dictionary.txt','r').read().split('\n');
     for line in file:
         dict.append(line);
     index = random.randint( 0 , len(dict)-1 );
