@@ -99,6 +99,12 @@ def showCurrentState(life, progress, guesses):
 
 
 
+def printABunch(n):
+    for i in range(n):
+        print();
+
+
+
 """
 prints a visual of the hangman (stick figure)
 """
@@ -133,6 +139,20 @@ def checkDuplicateGuess(guess, prevGuesses):
         if (guess == prevGuesses[i]):
             return True;
     return False;
+
+
+
+"""
+checks to see if new guess is valid (one letter)
+returns true or false
+"""
+def checkInvalidGuess(guess):
+    if (len(guess) != 1):
+        return True;
+    elif(ord(guess) < 97 or ord(guess) > 122):
+        return True;
+    else:
+        return False;
 
 
 
@@ -201,6 +221,7 @@ runs entire game until either complete word or lose 5 lives
         - if out of lives or complete word --> gameover
 """
 def run(ans, blanks):
+    printABunch(25);
     progress = blanks;
     lives = 5;
     notFinished = True;
@@ -210,17 +231,24 @@ def run(ans, blanks):
         thisGuess = input("\nGuess a letter: ");
         thisGuess = thisGuess.lower();
         duplicateGuess = checkDuplicateGuess(thisGuess, guessedLetters);
+        invalidGuess = checkInvalidGuess(thisGuess);
         if (duplicateGuess):
+            printABunch(25);
             print("\nAlready Guessed: " + thisGuess);
+        elif (invalidGuess):
+            printABunch(25);
+            print("\nInvalid guess: " + thisGuess);
         else:
             guessedLetters.append(thisGuess);
             correctGuess = checkCorrectGuess(thisGuess, ans);
             if (correctGuess):
                 print("____________________");
+                printABunch(25);
                 print("\n\tNice Guess!");
                 progress = updateBlanks(thisGuess, ans, progress);
             else:
                 print("____________________");
+                printABunch(25);
                 print("\n\tOuch!");
                 lives -= 1;
         isComplete = checkComplete(ans, progress);
@@ -253,6 +281,17 @@ def gameover(iWon, lives, ans):
 
 
 """
+when exiting game, prints goodbye and name
+"""
+def goodbye():
+    printABunch(25);
+    print("\n~~~~~~~~~~~~~~~~~~~~~~~~~\n\tGoodbye!!");
+    print("By Matthew Magardino <3\n~~~~~~~~~~~~~~~~~~~~~~~~~");
+    print("\n\n");
+
+
+
+"""
 main function
 begins with welcome window and logic for decision (start game or goodbye)
 """
@@ -265,9 +304,8 @@ def main():
             print("\nIncorrect input :( ");
             print("Try again");
         stage = welcome();
-    print("\n~~~~~~~~~~~~~~~~~~~~~~~~~\n\tGoodbye!!");
-    print("By Matthew Magardino <3\n~~~~~~~~~~~~~~~~~~~~~~~~~");
-    print("\n\n");
+    goodbye();
+
 
 
 
